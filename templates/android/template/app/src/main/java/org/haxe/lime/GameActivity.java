@@ -40,6 +40,8 @@ public class GameActivity extends SDLActivity {
 	private static DisplayCutout displayCutout;
 	private static Vibrator vibrator;
 
+	static GameActivity instance;
+
 	public Handler handler;
 
 
@@ -106,6 +108,8 @@ public class GameActivity extends SDLActivity {
 
 		super.onCreate (state);
 
+		instance = this;
+
 		assetManager = getAssets ();
 
 		if (checkSelfPermission(Manifest.permission.VIBRATE) == PackageManager.PERMISSION_GRANTED) {
@@ -148,6 +152,8 @@ public class GameActivity extends SDLActivity {
 
 		}
 
+		Performance.apply (this, ::if (SET_ANDROID_DEFAULT_REFRESH_RATE)::false::else::true::end::, ::if (SET_ANDROID_SUSTAINED_PERFORMANCE)::true::else::false::end::);
+
 		for (Extension extension : extensions) {
 
 			extension.onCreate (state);
@@ -158,6 +164,12 @@ public class GameActivity extends SDLActivity {
 
 
 	@Override protected void onDestroy () {
+
+		if (instance == this) {
+
+			instance = null;
+
+		}
 
 		for (Extension extension : extensions) {
 
@@ -250,6 +262,8 @@ public class GameActivity extends SDLActivity {
 	@Override protected void onResume () {
 
 		super.onResume ();
+
+		Performance.reapply (this);
 
 		for (Extension extension : extensions) {
 

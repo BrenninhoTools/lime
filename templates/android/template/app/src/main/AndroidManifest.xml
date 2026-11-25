@@ -18,6 +18,8 @@
 
 	<application ::foreach ANDROID_APPLICATION::::if ((value != null) && (value != ""))::::key::="::value::" ::end::::end::>
 
+		::if (SET_ANDROID_NO_GAME_MODE)::::else::<meta-data android:name="android.game_mode_config" android:resource="@xml/game_mode_config" />
+		::end::
 		::foreach ANDROID_APPLICATION_CHILDREN::::__current__::
 		::end::
 
