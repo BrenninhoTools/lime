@@ -115,7 +115,7 @@
                 <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_ime.c" />
                 <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_progressbar.c" />
                 <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_sysfs.c" />
-                <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_system_theme.c" />
+                <file name="${NATIVE_TOOLKIT_PATH}/custom/sdl/src/SDL_system_theme_lime.c" />
                 <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_threadprio.c" />
                 <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_ubuntu_touch.c" />
                 <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/core/linux/SDL_udev.c" />
@@ -407,7 +407,7 @@
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/notification/SDL_notification.c" />
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/notification/cocoa/SDL_cocoanotification.m" if="macos" />
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/notification/dummy/SDL_dummynotification.c" unless="windows || macos || linux" />
-            <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/notification/unix/SDL_dbusnotification.c" if="linux" />
+            <file name="${NATIVE_TOOLKIT_PATH}/custom/sdl/src/SDL_unixnotification_lime.c" if="linux" />
             <file name="${NATIVE_TOOLKIT_PATH}/sdl/src/notification/windows/SDL_windowsnotification.c" if="windows" />
 
         <section>

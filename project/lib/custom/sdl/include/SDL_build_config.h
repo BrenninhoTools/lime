@@ -320,10 +320,19 @@
  * @brief Headers specific to Linux systems.
  * @{
  */
+#if defined(__has_include)
+#if __has_include(<dbus/dbus.h>) && __has_include(<dbus/dbus-arch-deps.h>) && !defined(LIME_NO_DBUS)
+#define HAVE_DBUS_DBUS_H 1	 /**< D-Bus IPC system, only when its headers are installed */
+#endif
+#if __has_include(<libudev.h>) && !defined(LIME_NO_UDEV)
+#define HAVE_LIBUDEV_H 1	 /**< Device management library, only when its headers are installed */
+#endif
+#else
 #define HAVE_DBUS_DBUS_H 1	 /**< D-Bus IPC system */
+#define HAVE_LIBUDEV_H 1	 /**< Device management library */
+#endif
 #define HAVE_ICONV 1		 /**< Character set conversion */
 #define HAVE_ICONV_H 1		 /**< iconv.h header */
-#define HAVE_LIBUDEV_H 1	 /**< Device management library */
 #define HAVE_LINUX_INPUT_H 1 /**< Linux input subsystem */
 #define HAVE_MALLOC_H 1		 /**< Memory allocation (glibc) */
 #define HAVE_MEMORY_H 1		 /**< Memory operations (deprecated) */
