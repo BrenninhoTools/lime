@@ -7,6 +7,8 @@
             <compilerflag value="-I/usr/include/pipewire-0.3" />
             <compilerflag value="-I/usr/include/spa-0.2" />
             <compilerflag value="-I/usr/include/dbus-1.0" />
+            <compilerflag value="-DLIME_NO_DBUS" if="LIME_NO_DBUS" />
+            <compilerflag value="-DLIME_NO_UDEV" if="LIME_NO_UDEV" />
 
             <section>
 
