@@ -25,6 +25,9 @@ enum abstract ThermalStatus(Int) from Int to Int
 	var SHUTDOWN = 6;
 }
 
+#if (ios && lime_cffi && !macro)
+@:access(lime._internal.backend.native.NativeCFFI)
+#end
 class MobilePerformance
 {
 	public static var supported(get, never):Bool;
@@ -90,7 +93,7 @@ class MobilePerformance
 
 	static function get_supported():Bool
 	{
-		#if (android && !macro)
+		#if ((android || ios) && !macro)
 		return true;
 		#else
 		return false;
@@ -180,6 +183,8 @@ class MobilePerformance
 	{
 		#if (android && !macro)
 		return call("isPowerSaveMode", "()Z") == true;
+		#elseif (ios && lime_cffi && !macro)
+		return lime._internal.backend.native.NativeCFFI.lime_system_get_low_power_mode();
 		#else
 		return false;
 		#end
@@ -190,6 +195,8 @@ class MobilePerformance
 		#if (android && !macro)
 		var value:Dynamic = call("getThermalStatus", "()I");
 		return value == null ? UNKNOWN : value;
+		#elseif (ios && lime_cffi && !macro)
+		return lime._internal.backend.native.NativeCFFI.lime_system_get_thermal_state();
 		#else
 		return UNKNOWN;
 		#end

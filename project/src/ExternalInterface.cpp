@@ -58,6 +58,11 @@
 #include <cstring>
 #include <memory>
 
+#ifdef IPHONE
+extern "C" int lime_ios_thermal_state();
+extern "C" bool lime_ios_low_power_mode();
+#endif
+
 namespace lime
 {
 
@@ -1157,6 +1162,24 @@ namespace lime
 		return System::GetAllowScreenTimeout();
 	}
 
+	int lime_system_get_thermal_state()
+	{
+#ifdef IPHONE
+		return lime_ios_thermal_state();
+#else
+		return -1;
+#endif
+	}
+
+	bool lime_system_get_low_power_mode()
+	{
+#ifdef IPHONE
+		return lime_ios_low_power_mode();
+#else
+		return false;
+#endif
+	}
+
 	value lime_system_get_device_model()
 	{
 #if defined(HX_WINDOWS) || defined(IPHONE)
@@ -1885,6 +1908,8 @@ namespace lime
 	DEFINE_PRIME2v(lime_sensor_event_manager_register);
 	DEFINE_PRIME0(lime_system_get_allow_screen_timeout);
 	DEFINE_PRIME0(lime_system_get_device_model);
+	DEFINE_PRIME0(lime_system_get_thermal_state);
+	DEFINE_PRIME0(lime_system_get_low_power_mode);
 	DEFINE_PRIME0(lime_system_get_device_vendor);
 	DEFINE_PRIME3(lime_system_get_directory);
 	DEFINE_PRIME1(lime_system_get_display);

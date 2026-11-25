@@ -107,6 +107,8 @@ class NativeCFFI
 	private static final lime_system_get_hint = Prime.load("lime", "lime_system_get_hint", "so");
 	private static final lime_system_set_hint = Prime.load("lime", "lime_system_set_hint", "ssv");
 	private static final lime_system_get_device_model = Prime.load("lime", "lime_system_get_device_model", "o");
+	private static final lime_system_get_thermal_state = Prime.load("lime", "lime_system_get_thermal_state", "i");
+	private static final lime_system_get_low_power_mode = Prime.load("lime", "lime_system_get_low_power_mode", "b");
 	private static final lime_system_get_device_vendor = Prime.load("lime", "lime_system_get_device_vendor", "o");
 	private static final lime_system_get_directory = Prime.load("lime", "lime_system_get_directory", "isso");
 	private static final lime_system_get_display = Prime.load("lime", "lime_system_get_display", "io");
@@ -274,6 +276,8 @@ class NativeCFFI
 	private static final lime_system_get_hint = CFFI.load("lime", "lime_system_get_hint", 1);
 	private static final lime_system_set_hint = CFFI.load("lime", "lime_system_set_hint", 2);
 	private static final lime_system_get_device_model = CFFI.load("lime", "lime_system_get_device_model", 0);
+	private static final lime_system_get_thermal_state = CFFI.load("lime", "lime_system_get_thermal_state", 0);
+	private static final lime_system_get_low_power_mode = CFFI.load("lime", "lime_system_get_low_power_mode", 0);
 	private static final lime_system_get_device_vendor = CFFI.load("lime", "lime_system_get_device_vendor", 0);
 	private static final lime_system_get_directory = CFFI.load("lime", "lime_system_get_directory", 3);
 	private static final lime_system_get_display = CFFI.load("lime", "lime_system_get_display", 1);
