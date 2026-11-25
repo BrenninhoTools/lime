@@ -398,6 +398,37 @@ namespace lime
 		return SDL_TextInputActive(sdlWindow);
 	}
 
+	void Window::GetSafeArea(int *x, int *y, int *width, int *height)
+	{
+		SDL_Rect area = {0, 0, 0, 0};
+
+		if (!SDL_GetWindowSafeArea(sdlWindow, &area) || area.w <= 0 || area.h <= 0)
+		{
+			*x = 0;
+			*y = 0;
+			*width = GetWidth();
+			*height = GetHeight();
+			return;
+		}
+
+#ifdef IPHONE
+		float density = SDL_GetWindowPixelDensity(sdlWindow);
+
+		if (density <= 0)
+			density = 1;
+
+		*x = (int)(area.x * density);
+		*y = (int)(area.y * density);
+		*width = (int)(area.w * density);
+		*height = (int)(area.h * density);
+#else
+		*x = area.x;
+		*y = area.y;
+		*width = area.w;
+		*height = area.h;
+#endif
+	}
+
 	int Window::GetWidth()
 	{
 		int width;

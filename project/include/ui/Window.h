@@ -59,6 +59,7 @@ namespace lime
 		void *GetContext();
 		int GetDisplay();
 		void GetDisplayMode(DisplayMode *displayMode);
+		void GetSafeArea(int *x, int *y, int *width, int *height);
 		int GetHeight();
 		uint32_t GetID();
 		bool GetMouseLock();

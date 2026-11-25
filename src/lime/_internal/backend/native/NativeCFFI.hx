@@ -135,6 +135,7 @@ class NativeCFFI
 	private static final lime_window_get_context = Prime.load("lime", "lime_window_get_context", "od");
 	private static final lime_window_get_display = Prime.load("lime", "lime_window_get_display", "oi");
 	private static final lime_window_get_display_mode = Prime.load("lime", "lime_window_get_display_mode", "oo");
+	private static final lime_window_get_safe_area = Prime.load("lime", "lime_window_get_safe_area", "oo");
 	private static final lime_window_get_height = Prime.load("lime", "lime_window_get_height", "oi");
 	private static final lime_window_get_id = Prime.load("lime", "lime_window_get_id", "oi");
 	private static final lime_window_get_mouse_lock = Prime.load("lime", "lime_window_get_mouse_lock", "ob");
@@ -301,6 +302,7 @@ class NativeCFFI
 	private static final lime_window_get_context = CFFI.load("lime", "lime_window_get_context", 1);
 	private static final lime_window_get_display = CFFI.load("lime", "lime_window_get_display", 1);
 	private static final lime_window_get_display_mode = CFFI.load("lime", "lime_window_get_display_mode", 1);
+	private static final lime_window_get_safe_area = CFFI.load("lime", "lime_window_get_safe_area", 1);
 	private static final lime_window_get_height = CFFI.load("lime", "lime_window_get_height", 1);
 	private static final lime_window_get_id = CFFI.load("lime", "lime_window_get_id", 1);
 	private static final lime_window_get_mouse_lock = CFFI.load("lime", "lime_window_get_mouse_lock", 1);

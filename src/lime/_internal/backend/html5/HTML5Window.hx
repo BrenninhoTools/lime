@@ -378,6 +378,11 @@ class HTML5Window
 		return cursor;
 	}
 
+	public function getSafeArea():Rectangle
+	{
+		return new Rectangle(0, 0, parent.width, parent.height);
+	}
+
 	public function getDisplay():Display
 	{
 		return System.getDisplay(0);

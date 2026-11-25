@@ -1469,6 +1469,17 @@ namespace lime
 		return displayMode.Value();
 	}
 
+	value lime_window_get_safe_area(value window)
+	{
+		Window *targetWindow = (Window *)val_data(window);
+		int x = 0;
+		int y = 0;
+		int width = 0;
+		int height = 0;
+		targetWindow->GetSafeArea(&x, &y, &width, &height);
+		return Rectangle(x, y, width, height).Value();
+	}
+
 	int lime_window_get_height(value window)
 	{
 		Window *targetWindow = (Window *)val_data(window);
@@ -1908,6 +1919,7 @@ namespace lime
 	DEFINE_PRIME1(lime_window_get_context);
 	DEFINE_PRIME1(lime_window_get_display);
 	DEFINE_PRIME1(lime_window_get_display_mode);
+	DEFINE_PRIME1(lime_window_get_safe_area);
 	DEFINE_PRIME1(lime_window_get_height);
 	DEFINE_PRIME1(lime_window_get_id);
 	DEFINE_PRIME1(lime_window_get_mouse_lock);

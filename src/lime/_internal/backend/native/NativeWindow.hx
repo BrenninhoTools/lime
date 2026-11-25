@@ -277,6 +277,22 @@ class NativeWindow
 		return null;
 	}
 
+	public function getSafeArea():Rectangle
+	{
+		if (handle != null)
+		{
+			#if (!macro && lime_cffi)
+			var data:Dynamic = NativeCFFI.lime_window_get_safe_area(handle);
+			if (data != null && data.width > 0 && data.height > 0)
+			{
+				return new Rectangle(data.x, data.y, data.width, data.height);
+			}
+			#end
+		}
+
+		return new Rectangle(0, 0, parent.width, parent.height);
+	}
+
 	public function getDisplayMode():DisplayMode
 	{
 		if (handle != null)

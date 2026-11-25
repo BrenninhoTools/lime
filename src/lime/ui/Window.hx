@@ -28,6 +28,7 @@ class Window
 	public var cursor(get, set):MouseCursor;
 	public var display(get, null):Display;
 	public var displayMode(get, set):DisplayMode;
+	public var safeArea(get, never):Rectangle;
 	#if (!lime_doc_gen || (js && html5))
 	public var element(default, null):#if (js && html5) Element #else Dynamic #end;
 	#end
@@ -328,6 +329,11 @@ class Window
 	@:noCompletion private function get_display():Display
 	{
 		return __backend.getDisplay();
+	}
+
+	@:noCompletion private function get_safeArea():Rectangle
+	{
+		return __backend.getSafeArea();
 	}
 
 	@:noCompletion private function get_displayMode():DisplayMode
