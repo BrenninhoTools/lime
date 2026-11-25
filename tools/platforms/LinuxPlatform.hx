@@ -265,6 +265,14 @@ class LinuxPlatform extends PlatformTarget
 
 			if (xmls.length > 0)
 			{
+				var scanner:String = findWaylandScanner();
+
+				if (scanner == null)
+				{
+					Log.error("wayland-scanner was not found. Install it (Debian/Ubuntu: libwayland-bin, Fedora: wayland-devel, Arch: wayland) or set WAYLAND_SCANNER to its path.");
+					return;
+				}
+
 				Log.println('\x1b[1;33mGenerating Wayland Protocols (${xmls.length > 1 ? xmls.length + " files" : "1 file"})\x1b[0m');
 
 				for (xml in xmls)
@@ -281,13 +289,13 @@ class LinuxPlatform extends PlatformTarget
 
 					Log.println(' - \x1b[1;33m$file\x1b[0m');
 
-					System.runCommand("", "wayland-scanner", [
+					System.runCommand("", scanner, [
 						"client-header",
 						Path.combine(waylandProtocolsPath, xml),
 						haxe.io.Path.withExtension(output, "h")
 					]);
 
-					System.runCommand("", "wayland-scanner", [
+					System.runCommand("", scanner, [
 						"private-code",
 						Path.combine(waylandProtocolsPath, xml),
 						haxe.io.Path.withExtension(output, "c")
@@ -295,6 +303,40 @@ class LinuxPlatform extends PlatformTarget
 				}
 			}
 		}
+	}
+
+	private function findWaylandScanner():String
+	{
+		var custom:String = Sys.getEnv("WAYLAND_SCANNER");
+
+		if (custom != null && custom.length > 0 && FileSystem.exists(custom))
+		{
+			return custom;
+		}
+
+		var paths:Array<String> = [];
+		var envPath:String = Sys.getEnv("PATH");
+
+		if (envPath != null)
+		{
+			paths = paths.concat(envPath.split(":"));
+		}
+
+		paths = paths.concat(["/usr/bin", "/usr/local/bin", "/bin"]);
+
+		for (dir in paths)
+		{
+			if (dir == null || dir.length == 0) continue;
+
+			var candidate:String = Path.combine(dir, "wayland-scanner");
+
+			if (FileSystem.exists(candidate) && !FileSystem.isDirectory(candidate))
+			{
+				return candidate;
+			}
+		}
+
+		return null;
 	}
 
 	private override function getDisplayHXML():HXML

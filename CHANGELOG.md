@@ -10,6 +10,7 @@ BrenninhoTools fork
 - Added `Window.safeArea`, backed by `SDL_GetWindowSafeArea`, with the area not covered by notches, rounded corners or system bars.
 - `MobilePerformance` reports the thermal state and Low Power Mode on iOS.
 - Android declares a game mode config so the system Game Dashboard can switch between performance and battery modes. Set `ANDROID_NO_GAME_MODE` to remove it.
+- The Linux rebuild looks up `wayland-scanner` in `PATH`, `/usr/bin` and `/usr/local/bin`, accepts `WAYLAND_SCANNER` to point at it, and stops with the package to install when it is missing.
 
 8.3.1 (02/16/2026)
 ------------------
