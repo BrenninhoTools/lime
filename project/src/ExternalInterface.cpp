@@ -37,6 +37,7 @@
 #include <system/FileWatcher.h>
 #include <system/JNI.h>
 #include <system/System.h>
+#include <system/Hardware.h>
 #include <text/Font.h>
 #include <ui/Cursor.h>
 #include <ui/FileDialog.h>
@@ -1296,6 +1297,76 @@ namespace lime
 		return alloc_null();
 	}
 
+	int lime_hardware_get_cpu_count()
+	{
+		return Hardware::GetCPUCount();
+	}
+
+	int lime_hardware_get_cpu_cache_line_size()
+	{
+		return Hardware::GetCPUCacheLineSize();
+	}
+
+	int lime_hardware_get_system_ram()
+	{
+		return Hardware::GetSystemRAM();
+	}
+
+	int lime_hardware_get_simd_flags()
+	{
+		return Hardware::GetSIMDFlags();
+	}
+
+	int lime_hardware_get_simd_alignment()
+	{
+		return Hardware::GetSIMDAlignment();
+	}
+
+	double lime_hardware_get_process_memory()
+	{
+		return Hardware::GetProcessMemory();
+	}
+
+	double lime_hardware_get_peak_process_memory()
+	{
+		return Hardware::GetPeakProcessMemory();
+	}
+
+	double lime_hardware_get_available_memory()
+	{
+		return Hardware::GetAvailableMemory();
+	}
+
+	int lime_hardware_get_power_state()
+	{
+		return Hardware::GetPowerState();
+	}
+
+	int lime_hardware_get_battery_percent()
+	{
+		return Hardware::GetBatteryPercent();
+	}
+
+	int lime_hardware_get_battery_seconds()
+	{
+		return Hardware::GetBatterySeconds();
+	}
+
+	double lime_hardware_get_precise_timer()
+	{
+		return Hardware::GetPreciseTimer();
+	}
+
+	double lime_hardware_get_ticks_ns()
+	{
+		return Hardware::GetTicksNS();
+	}
+
+	bool lime_hardware_set_thread_priority(int priority)
+	{
+		return Hardware::SetThreadPriority(priority);
+	}
+
 	double lime_system_get_timer()
 	{
 		return System::GetTimer();
@@ -1919,6 +1990,20 @@ namespace lime
 	DEFINE_PRIME0(lime_system_get_platform_label);
 	DEFINE_PRIME0(lime_system_get_platform_name);
 	DEFINE_PRIME0(lime_system_get_platform_version);
+	DEFINE_PRIME0(lime_hardware_get_cpu_count);
+	DEFINE_PRIME0(lime_hardware_get_cpu_cache_line_size);
+	DEFINE_PRIME0(lime_hardware_get_system_ram);
+	DEFINE_PRIME0(lime_hardware_get_simd_flags);
+	DEFINE_PRIME0(lime_hardware_get_simd_alignment);
+	DEFINE_PRIME0(lime_hardware_get_process_memory);
+	DEFINE_PRIME0(lime_hardware_get_peak_process_memory);
+	DEFINE_PRIME0(lime_hardware_get_available_memory);
+	DEFINE_PRIME0(lime_hardware_get_power_state);
+	DEFINE_PRIME0(lime_hardware_get_battery_percent);
+	DEFINE_PRIME0(lime_hardware_get_battery_seconds);
+	DEFINE_PRIME0(lime_hardware_get_precise_timer);
+	DEFINE_PRIME0(lime_hardware_get_ticks_ns);
+	DEFINE_PRIME1(lime_hardware_set_thread_priority);
 	DEFINE_PRIME0(lime_system_get_timer);
 	DEFINE_PRIME0(lime_system_get_theme);
 	DEFINE_PRIME1(lime_system_get_windows_console_mode);

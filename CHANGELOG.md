@@ -10,6 +10,9 @@ BrenninhoTools fork
 - Added `Window.safeArea`, backed by `SDL_GetWindowSafeArea`, with the area not covered by notches, rounded corners or system bars.
 - `MobilePerformance` reports the thermal state and Low Power Mode on iOS.
 - Android declares a game mode config so the system Game Dashboard can switch between performance and battery modes. Set `ANDROID_NO_GAME_MODE` to remove it.
+- Added `lime.system.Hardware`: CPU count, cache line size, system RAM, SIMD support (`SIMDFlags`), process, peak and available memory, a nanosecond precision timer, thread priorities (`ThreadPriority`) and `formatBytes`. Backed by the new native `Hardware.cpp`.
+- Added `lime.system.Battery` with `state` (`BatteryState`), `percent`, `secondsLeft`, `charging`, `onBattery` and `low`.
+- Merged the latest FunkinCrew/lime changes (`F32` streamed buffers at the engine sample rate).
 - Linux builds no longer need the D-Bus or udev development headers. SDL turns D-Bus (tray, notifications, system theme, IME) and udev on only when their headers are found; define `LIME_NO_DBUS` or `LIME_NO_UDEV` to leave them out.
 - The Linux rebuild looks up `wayland-scanner` in `PATH`, `/usr/bin` and `/usr/local/bin`, accepts `WAYLAND_SCANNER` to point at it, and stops with the package to install when it is missing.
 
