@@ -7,6 +7,8 @@ BrenninhoTools fork
 - Added `lime.system.MobilePerformance` with the display refresh rate, the supported refresh rates, a preferred refresh rate, sustained performance mode, power save mode, thermal status and headroom, and the Android game mode.
 - Android picks the highest refresh rate of the current resolution at startup. Set `ANDROID_DEFAULT_REFRESH_RATE` to keep the system default.
 - Android sustained performance mode can be enabled at startup with `ANDROID_SUSTAINED_PERFORMANCE`.
+- Added `Window.safeArea`, backed by `SDL_GetWindowSafeArea`, with the area not covered by notches, rounded corners or system bars.
+- `MobilePerformance` reports the thermal state and Low Power Mode on iOS.
 - Android declares a game mode config so the system Game Dashboard can switch between performance and battery modes. Set `ANDROID_NO_GAME_MODE` to remove it.
 
 8.3.1 (02/16/2026)
